@@ -3,7 +3,10 @@
 #
 FROM debian:10 AS build
 
-RUN apt-get update && apt-get -y install maven
+RUN apt-get update && \
+    apt-get install -y apt-transport-https ca-certificates && \
+    apt-get update && \
+    apt-get install -y maven
 
 WORKDIR /opt/shipping
 
@@ -15,7 +18,7 @@ RUN mvn package
 #
 # Run
 #
-FROM openjdk:8-jdk
+FROM maven:3.8.4-openjdk-11 AS build
 
 EXPOSE 8080
 
