@@ -4,9 +4,12 @@
 FROM debian:10 AS build
 
 RUN apt-get update && \
-    apt-get install -y apt-transport-https ca-certificates && \
+    apt-get install -y apt-transport-https ca-certificates wget gnupg2 && \
     apt-get update && \
-    apt-get install -y maven
+    apt-get install -y openjdk-11-jdk-headless && \
+    apt-get install -y maven && \
+    apt-get clean && \
+    rm -rf /var/lib/apt/lists/*
 
 WORKDIR /opt/shipping
 
