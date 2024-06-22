@@ -18,7 +18,7 @@ RUN mvn package
 #
 # Run
 #
-FROM maven:3.8.4-openjdk-11 AS build
+FROM openjdk:8-jdk
 
 EXPOSE 8080
 
